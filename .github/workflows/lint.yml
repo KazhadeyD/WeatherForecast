@@ -30,3 +30,4 @@ jobs:
         with:
           eslint: true
           eslint_auto_fix: true
+          continue_on_error: false
