@@ -15,5 +15,6 @@ module.exports = {
     "semi": ["error", "always"],
     "quotes": ["error", "double"],
     "max-len": ["warn", {"code": 80}],
+    "linebreak-style": ["off"],
   },
 };
