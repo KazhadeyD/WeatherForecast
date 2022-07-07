@@ -8,7 +8,14 @@ module.exports = {
     filename: "[name].bundle.js",
     clean: true,
   },
+  devServer: {
+    watchFiles: ["src/**"],
+    compress: true,
+    port: 9000,
+  },
   devtool: process.env.NODE_ENV === "development" ? "eval-source-map" : "source-map",
-  plugins: [new HtmlWebpackPlugin()],
-  watch: true,
+  plugins: [new HtmlWebpackPlugin(
+      {
+        template: "src/index.html",
+      })],
 };

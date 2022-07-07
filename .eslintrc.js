@@ -16,5 +16,6 @@ module.exports = {
     "quotes": ["error", "double"],
     "max-len": ["warn", {"code": 150}],
     "linebreak-style": ["off"],
+    "require-jsdoc": ["off"],
   },
 };
