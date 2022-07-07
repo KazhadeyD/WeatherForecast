@@ -1,13 +1,21 @@
 import {getCurrentGeoPos} from "./geo";
 import {getWeatherByGeoCoord, getWeatherBycity} from "./weather";
+import {loadCityHistory, saveCityToHistory} from "./localStorage";
 
 function subscribe() {
   const btn = document.getElementById("btnGetWeather");
   btn.addEventListener("click", async () => {
-    const weather = await getWeatherBycity(document.getElementById("inputCity").value);
+    const city = document.getElementById("inputCity").value;
+    if (city === null) {
+      return;
+    }
+    const weather = await getWeatherBycity(city);
     const weatherInfoElem = document.querySelector("#weather-info-in-city");
-    weatherInfoElem.innerHTML = `<li>Введенный город: ${document.getElementById("inputCity").value}</li>
+    weatherInfoElem.innerHTML = `<li>Введенный город: ${city}</li>
                                 <li>Температура: ${weather["main"]["temp"]} C°</li>`;
+
+    saveCityToHistory(city);
+    createCityList();
   });
 }
 
@@ -21,5 +29,27 @@ async function main() {
                                <li><i>Место под иконку</i></li>`;
 }
 
+function createCityList() {
+  const cityList = loadCityHistory();
+  if (cityList.length === null) {
+    return;
+  }
+  const list = document.querySelector("#city-history");
+  list.innerHTML = "";
+
+  cityList.forEach((city, index)=> {
+    const li = document.createElement("li");
+    li.innerText = city;
+    li.addEventListener("click", async () => {
+      const weather = await getWeatherBycity(city);
+      const weatherInfoElem = document.querySelector("#weather-info-in-city");
+      weatherInfoElem.innerHTML = `<li>Введенный город: ${city}</li>
+                                  <li>Температура: ${weather["main"]["temp"]} C°</li>`;
+    });
+    list.appendChild(li);
+  });
+}
+
 subscribe();
 main();
+createCityList();
