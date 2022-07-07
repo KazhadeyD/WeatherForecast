@@ -3,7 +3,12 @@ import {getWeatherByGeoCoord, getWeatherBycity} from "./weather";
 
 function subscribe() {
   const btn = document.getElementById("btnGetWeather");
-  btn.addEventListener("click", () => getWeatherBycity(document.getElementById("inputCity").value));
+  btn.addEventListener("click", async () => {
+    const weather = await getWeatherBycity(document.getElementById("inputCity").value);
+    const weatherInfoElem = document.querySelector("#weather-info-in-city");
+    weatherInfoElem.innerHTML = `<li>Введенный город: ${document.getElementById("inputCity").value}</li>
+                                <li>Температура: ${weather["main"]["temp"]} C°</li>`;
+  });
 }
 
 async function main() {
