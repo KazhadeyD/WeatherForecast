@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "build": "webpack --node-env production",
-    "dev": "webpack serve --node-env development"
+    "dev": "webpack serve --node-env development",
+    "deploy:web": "npm run build && gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   "devDependencies": {
     "eslint": "^8.18.0",
     "eslint-config-google": "^0.14.0",
+    "gh-pages": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^28.1.1",
     "nodemon": "^2.0.18",
