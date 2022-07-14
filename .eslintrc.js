@@ -14,7 +14,8 @@ module.exports = {
   "rules": {
     "semi": ["error", "always"],
     "quotes": ["error", "double"],
-    "max-len": ["warn", {"code": 80}],
+    "max-len": ["warn", {"code": 150}],
     "linebreak-style": ["off"],
+    "require-jsdoc": ["off"],
   },
 };
