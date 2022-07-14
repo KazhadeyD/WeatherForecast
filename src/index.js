@@ -1,6 +1,7 @@
 import {getCurrentGeoPos} from "./geo";
 import {getWeatherByGeoCoord, getWeatherBycity} from "./weather";
 import {loadCityHistory, saveCityToHistory} from "./localStorage";
+import {getMap} from "./yaMap";
 
 function subscribe() {
   const btn = document.getElementById("btnGetWeather");
@@ -12,8 +13,9 @@ function subscribe() {
     const weather = await getWeatherBycity(city);
     const weatherInfoElem = document.querySelector("#weather-info-in-city");
     weatherInfoElem.innerHTML = `<li>Введенный город: ${city}</li>
-                                <li>Температура: ${weather["main"]["temp"]} C°</li>`;
+                                <li>Температура: ${weather.main.temp} C°</li>`;
 
+    getMap(weather.coord.lat, weather.coord.lon);
     saveCityToHistory(city);
     createCityList();
   });
@@ -27,6 +29,8 @@ async function main() {
   weatherInfoElem.innerHTML = `<li>Ваш город: ${weather["name"]}</li>
                                <li>Температура: ${weather["main"]["temp"]} C°</li>
                                <li><i>Место под иконку</i></li>`;
+
+  getMap(position["latitude"], position["longitude"]);
 }
 
 function createCityList() {
@@ -45,6 +49,8 @@ function createCityList() {
       const weatherInfoElem = document.querySelector("#weather-info-in-city");
       weatherInfoElem.innerHTML = `<li>Введенный город: ${city}</li>
                                   <li>Температура: ${weather["main"]["temp"]} C°</li>`;
+
+      getMap(weather.coord.lat, weather.coord.lon);
     });
     list.appendChild(li);
   });
