@@ -16,6 +16,6 @@ module.exports = {
   devtool: process.env.NODE_ENV === "development" ? "eval-source-map" : "source-map",
   plugins: [new HtmlWebpackPlugin(
       {
-        template: "src/index.html",
+        template: "index.html",
       })],
 };
