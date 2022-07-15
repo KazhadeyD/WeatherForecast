@@ -1,3 +1,11 @@
+![](https://img.shields.io/github/issues/KazhadeyD/WeatherForecast?style=plastic)
+![](https://img.shields.io/github/forks/KazhadeyD/WeatherForecast?style=plastic)
+![](https://img.shields.io/github/stars/KazhadeyD/WeatherForecast?style=plastic)
+
+
+
+
+
 # WeatherForecast
 Приложение "Прогноз погоды"
 
